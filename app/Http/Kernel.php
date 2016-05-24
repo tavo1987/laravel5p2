@@ -31,6 +31,11 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
         ],
 
+        'admin' => [
+            'web',
+            'auth'
+        ],
+
         'api' => [
             'throttle:60,1',
         ],

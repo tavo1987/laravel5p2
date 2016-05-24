@@ -11,10 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+//Route::group(['middleware' => ['web']], function(){
+	
+	require __DIR__ .'/routes/web.routes.php';
+//});
+
+Route::group(['middleware' => ['admin']], function(){
+	
+	require __DIR__ .'/routes/admin.routes.php';
 });
 
-Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::group(['middleware' => ['api']], function(){
+	
+	require __DIR__ .'/routes/api.routes.php';
+});
+
+
+	
