@@ -3,11 +3,7 @@
 use App\Post;
 use Illuminate\Foundation\Http\Middleware\Authorize;
 
-Route::bind('post',function($post){
-    $post =  new Post();
-    $post->title = 'Example title';
-    return $post;
-});
+
 
 Route::get('dashboard',function (){
     return '<h1>Welcome to the dashboard</h1>';
@@ -28,7 +24,14 @@ Route::post('posts',function (){
     return '<h1>Post create</h1>';
 });
 
-Route::get('posts/{post}/edit',function ($post){
+
+//WITH OPTIONAL PARAM
+Route::get('post/{post?}',function (Post $post = null){
+    return dd($post);
+});
+
+//Route implicit
+Route::get('posts/{post}/edit',function (Post $post){
     return '<h1>Post '.$post->title.' edit</h1>';
 })->middleware(Authorize::class.':edit,post');
 
