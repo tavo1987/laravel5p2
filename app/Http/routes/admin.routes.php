@@ -9,7 +9,8 @@ Route::get('dashboard',function (){
     return '<h1>Welcome to the dashboard</h1>';
 });
 
-
+Route::resource('posts','PostController',['parameters' => ['posts' => 'post']]);
+/*
 Route::get('posts',function (){
     return '<h1>Post List</h1>';
 })->middleware(Authorize::class.':view,'.Post::class);
@@ -43,5 +44,5 @@ Route::put('posts/{post}',function (){
 Route::delete('posts/{posts}',function (){
     return '<h1>Post delete</h1>';
 });
-
+*/
 

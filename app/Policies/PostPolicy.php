@@ -2,6 +2,8 @@
 
 namespace App\Policies;
 
+use App\Post;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PostPolicy
@@ -13,9 +15,25 @@ class PostPolicy
         return true;
     }
 
-    public function edit()
+    /**
+     * @param \App\User $user
+     * @param  \App\Post $post
+     * @return bool
+     */
+    public function edit(User $user, Post $post)
     {
-        return true;
+        return false;
+    }
+
+
+    /**
+     * @param \App\User $user
+     * @param  \App\Post $post
+     * @return bool
+     */
+    public function update(User $user, Post $post)
+    {
+        return $user->id === $post->author_id;
     }
 
 
