@@ -17,7 +17,7 @@
 	require __DIR__ .'/routes/web.routes.php';
 //});
 
-Route::group(['middleware' => ['admin']], function(){
+Route::group(['middleware' => ['admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function(){
 	
 	require __DIR__ .'/routes/admin.routes.php';
 });
