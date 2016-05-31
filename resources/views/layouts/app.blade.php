@@ -50,6 +50,9 @@
                 @if (!Auth::guest())
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/home') }}">Home</a></li>
+                        @can('admin')
+                            <li><a href="{{ url('/admin/dashboard') }}">Admin</a></li>
+                        @endcan
                     </ul>
                 @endif
 
