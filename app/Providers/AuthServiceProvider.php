@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies($gate);
 
         $gate->before(function(User $user){
-            if ($user->email === 'tavo19871818@gmail.com'){
+            if ($user->email === 'tavo198718@gmail.com'){
                 return true;
             }
         });

@@ -12,17 +12,21 @@
 */
 
 
-require __DIR__ .'/routes/web.routes.php';
+Route::get('/', function () {
+	return view('welcome');
+});
+
+Route::get('/home', 'HomeController@index');
+
+Route::auth();
 
 
 Route::group(['middleware' => ['admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function(){
-	require __DIR__ .'/routes/admin.routes.php';
+	require __DIR__ . '/Routes/admin.routes.php';
 });
 
 
-Route::group(['middleware' => ['api']], function(){
-	require __DIR__ .'/routes/api.routes.php';
-});
+
 
 
 	
