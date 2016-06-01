@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
             'last_name' => 'Ramírez',
             'email' => 'tavo198718@gmail.com',
             'password' => bcrypt('secret'),
+            'api_token' => str_random(60)
         ]);
 
         factory(User::class)->times(5)->create();
