@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -36,5 +37,52 @@ class AuthenticationTest extends TestCase
         $this->seePageIs('/')
         ->seeText('Welcome')
         ->seeText('Julio Perez');
+    }
+
+    public function testUserCanLogin()
+    {
+        $user = $this->createUser();
+
+        $this->visit('/')
+            ->dontSeeIsAuthenticated()
+            ->click('Login')
+            ->seePageIs('/login')
+            ->type($user->email,'email')
+            ->type('secret','password')
+            ->press('Login');
+
+
+        $this->seeIsAuthenticated();
+
+        $this->seePageIs('/')
+            ->see('Welcome')
+            ->see($user->first_name.' '.$user->last_name);
+
+    }
+
+    public function userCanLogout()
+    {
+        $user = $this->createUser();
+
+        $this->actingAs($user)
+            ->visit('/')
+            ->SeeIsAuthenticated()
+            ->click('Logout')
+            ->seePageIs('/home')
+            ->dontSeeIsAuthenticated();
+    }
+
+
+    public function createUser()
+    {
+        $user = factory(User::class)->create([
+            'first_name' => 'Edwin',
+            'last_name' => 'Ramírez',
+            'email' => 'tavo198718@gmail.com',
+            'password' => bcrypt('secret'),
+            'api_token' => str_random(60)
+        ]);
+
+        return $user;
     }
 }
