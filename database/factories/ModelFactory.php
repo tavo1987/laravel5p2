@@ -19,6 +19,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'first_name'     => $faker->name,
         'last_name'      => $faker->name,
         'email'          => $faker->safeEmail,
+        'role'           => 'user',
         'password'       => bcrypt(str_random(10)),
         'api_token'      => str_random(60),
         'last_logged_at' => Carbon::now(),
