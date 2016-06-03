@@ -37,7 +37,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         $gate->define('admin',function (User $user){
-            return $user->email == 'tavo198718@gmail.com';
+            return $user->email == 'edwin@gmail.com';
         });
     }
 }

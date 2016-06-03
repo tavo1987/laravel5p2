@@ -12,6 +12,7 @@
 */
 
 use App\Post;
+use Carbon\Carbon;
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
@@ -20,6 +21,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email'          => $faker->safeEmail,
         'password'       => bcrypt(str_random(10)),
         'api_token'      => str_random(60),
+        'last_logged_at' => Carbon::now(),
         'remember_token' => str_random(10),
     ];
 });

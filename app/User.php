@@ -15,6 +15,9 @@ class User extends Authenticatable
         'first_name','last_name', 'email', 'password',
     ];
 
+
+    protected $dates = ['last_logged_at'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -27,5 +30,11 @@ class User extends Authenticatable
 
     public function getFullNameAttribute(){
         return $this->first_name .' '. $this->last_name;
+    }
+
+
+    public function getSlugAttribute()
+    {
+        return str_slug($this->first_name.$this->id,'-');
     }
 }

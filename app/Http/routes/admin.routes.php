@@ -10,6 +10,13 @@ Route::get('dashboard',function (){
 });
 
 Route::resource('posts','PostController',['parameters' => ['posts' => 'post']]);
+
+Route::get('users','UserController@index');
+
+Route::post('users/session/{user}','UserController@session');
+
+
+
 /*
 Route::get('posts',function (){
     return '<h1>Post List</h1>';

@@ -60,7 +60,7 @@ class AuthenticationTest extends TestCase
 
     }
 
-    public function userCanLogout()
+    public function TestUserCanLogout()
     {
         $user = $this->createUser();
 
@@ -70,6 +70,29 @@ class AuthenticationTest extends TestCase
             ->click('Logout')
             ->seePageIs('/home')
             ->dontSeeIsAuthenticated();
+    }
+
+
+    public function testUserAdminCanLoginOtherUser()
+    {
+
+        //HAVING
+        $user = $this->createUser();
+        $other_user = factory(User::class)->create();
+
+        //WHEN
+        $this->actingAs($user)
+            ->visit('/admin/users')
+            ->see('Lista de Usuarios')
+            ->within('#'.$other_user->slug, function () use($other_user){
+                $this->see('Iniciar sesión')
+                    ->press('Iniciar sesión');
+            });
+
+        //THEN
+            $this->seeIsAuthenticatedAs($other_user)
+                ->seeText($other_user->full_name);
+
     }
 
 

@@ -52,7 +52,15 @@
                         <li><a href="{{ url('/home') }}">Home</a></li>
                         @can('admin')
                             <li><a href="{{ url('/admin/dashboard') }}">Admin</a></li>
+                            <li><a href="{{ url('/admin/users') }}">Usuarios</a></li>
                         @endcan
+                        @if(Session::has('id_admin'))
+                            <li>
+                                <button class="btn btn-default btn-sm navbar-btn" href="{{ url('/admin/dashboard') }}">
+                                   Admin
+                                </button>
+                            </li>
+                        @endif
                     </ul>
                 @endif
 
@@ -65,8 +73,8 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->full_name }} <span class="caret"></span>
-                            </a>
+                            {{ Auth::user()->full_name }} <span class="caret"></span>
+                                </a>
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
