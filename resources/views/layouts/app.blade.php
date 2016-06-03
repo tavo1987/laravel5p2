@@ -54,10 +54,10 @@
                             <li><a href="{{ url('/admin/dashboard') }}">Admin</a></li>
                             <li><a href="{{ url('/admin/users') }}">Usuarios</a></li>
                         @endcan
-                        @if(Session::has('id_admin'))
+                        @if(session('id_admin'))
                             <li>
                                 <button class="btn btn-default btn-sm navbar-btn" href="{{ url('/admin/dashboard') }}">
-                                   Admin
+                                   {{session('id_admin')}}
                                 </button>
                             </li>
                         @endif

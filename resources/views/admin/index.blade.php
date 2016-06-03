@@ -12,11 +12,11 @@
                         <table class="table" id="table-users">
                             <thead>
                                 <th>id</th>
-                                <th>Primer Nombre</th>
-                                <th>Segundo NOmbre</th>
+                                <th>Nombre</th>
+                                <th>role</th>
                                 <th>Email</th>
-                                <th>Api token</th>
-                                <th>Ultima Sessión</th>
+                                <th>Api Key</th>
+                                <th>Ultima Sesión</th>
                                 <th>Acciones</th>
                             </thead>
                             <tbody>
@@ -24,7 +24,7 @@
                                     <tr id="{{ $user->slug}}">
                                         <td>{{$user->id}}</td>
                                         <td>{{$user->first_name}}</td>
-                                        <td>{{$user->last_name}}</td>
+                                        <td>{{$user->role}}</td>
                                         <td>{{$user->email}}</td>
                                         <td><a class="btn btn-block btn-success btn-sm" href="{{$user->api_token}}">LInk</a></td>
                                         <td>{{$user->last_logged_at->format('d-m-Y H:ia')}}</td>

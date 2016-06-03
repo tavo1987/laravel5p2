@@ -14,7 +14,6 @@ use Styde\Html\Facades\Alert;
 class UserController extends Controller
 {
     public function index(){
-
         $users = User::all();
         return view('admin.index', compact('users'));
     }
@@ -27,6 +26,6 @@ class UserController extends Controller
 
         Alert::message('El final está cerca');
 
-        return view('welcome');
+        return redirect('/');
     }
 }
