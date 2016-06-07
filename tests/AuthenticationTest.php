@@ -90,8 +90,9 @@ class AuthenticationTest extends TestCase
             });
 
         //THEN
-            $this->seeIsAuthenticatedAs($other_user)
-                ->seeText($other_user->full_name);
+         $this->withSession(['id_admin',$user->id])
+              ->seeIsAuthenticatedAs($other_user)
+              ->seeText($other_user->full_name);
 
     }
 
@@ -100,10 +101,11 @@ class AuthenticationTest extends TestCase
     {
         $user = factory(User::class)->create([
             'first_name' => 'Edwin',
-            'last_name' => 'Ramírez',
-            'email' => 'tavo198718@gmail.com',
-            'password' => bcrypt('secret'),
-            'api_token' => str_random(60)
+            'last_name'  => 'Ramírez',
+            'email'      => 'tavo198718@gmail.com',
+            'role'       => 'admin',
+            'password'   => bcrypt('secret'),
+            'api_token'  => str_random(60)
         ]);
 
         return $user;

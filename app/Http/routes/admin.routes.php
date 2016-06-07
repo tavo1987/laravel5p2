@@ -15,6 +15,7 @@ Route::get('users','UserController@index');
 
 Route::post('users/session/{user}','UserController@session');
 
+Route::post('users/admin/{id}','UserController@sessionAdmin');
 
 
 /*

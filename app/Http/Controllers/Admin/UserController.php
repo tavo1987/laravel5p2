@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\User;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -20,12 +19,22 @@ class UserController extends Controller
     
     public function session(User $user)
     {
-        Session::put('id_admin', Auth::user()->id);
+        $id_admin = Auth::user()->id; 
+
+        Auth::logout();     
 
         Auth::loginUsingId($user->id);
 
+        Session::put('id_admin', $id_admin);
+
         Alert::message('El final está cerca');
 
+        return redirect('/');
+    }
+
+    public function sessionAdmin($id)
+    {
+        Auth::loginUsingId($id);
         return redirect('/');
     }
 }

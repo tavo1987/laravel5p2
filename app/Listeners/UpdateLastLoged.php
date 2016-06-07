@@ -30,5 +30,7 @@ class UpdateLastLoged
         $event->user->last_logged_at = Carbon::now()->toDateTimeString();
         $event->user->timestamps = false;
         $event->user->save();
+
+        session()->forget('id_admin');
     }
 }

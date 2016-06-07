@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies($gate);
 
         $gate->before(function(User $user){
-            if ($user->role === 'admin'){
+            if ($user->role === 'admin' || session()->has('id_admin')){
                 return true;
             }
         });

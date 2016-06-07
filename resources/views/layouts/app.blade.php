@@ -56,9 +56,10 @@
                         @endcan
                         @if(session('id_admin'))
                             <li>
-                                <button class="btn btn-default btn-sm navbar-btn" href="{{ url('/admin/dashboard') }}">
-                                   {{session('id_admin')}}
-                                </button>
+                                <form action="{{ url('/admin/users/admin/'.session('id_admin').'')}}" method="POST">
+                                    {{ csrf_field() }}
+                                    <button  class="btn btn-block navbar-btn btn-primary btn-sm" type="submit">Admin</button>
+                                </form>
                             </li>
                         @endif
                     </ul>
